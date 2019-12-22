@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template
 
-main = Blueprint('main', __name__)
+auth = Blueprint('auth', __name__)
 
-@main.route("/")
-def homepage():
-    return render_template("homepage.html")
+@auth.route("/login")
+def login():
+    return render_template("login.html")
 
-@main.route("/profile")
-def profile():
-    return "Welcome to your profile"
+@auth.route("/signup")
+def signup():
+    return render_template("register.html")
