@@ -1,3 +1,4 @@
 *.ged
 env
 .vscode
+.env
