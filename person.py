@@ -3,7 +3,6 @@ import re
 class Person:
     def __init__(self, person_id, file_dump):
         self.person_id = person_id
-        # self.name = ""
         self.data = file_dump
         self.families = []
         self.parse_dump()
