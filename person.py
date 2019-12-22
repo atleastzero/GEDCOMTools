@@ -1,7 +1,7 @@
 class Person:
-    def __init__(self, person_id, name, file_dump, families):
+    def __init__(self, person_id, file_dump):
         self.person_id = person_id
-        self.name = name
+        self.name = "NOT A NAME"
         self.data = file_dump
         self.families = []
 
