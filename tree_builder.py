@@ -26,11 +26,10 @@ class Builder:
                 print("looking for person")
                 if re.search("@P", self.lines[current_index]):
                     print("found a person")
-                    person_id = re.findall(r"\d", self.lines[current_index])
+                    person_id = "".join(re.findall(r"\d", self.lines[current_index]))[1:]
                     current_index += 1
                     name = "NOT A NAME"
-                    if re.search("NAME", self.lines[current_index]):
-                        name = re.search(r"NAME [a-zA-Z\s/']+", self.lines[current_index]).group()[5:]
+                    name = (re.search(r"NAME [a-zA-Z\s/']+", self.lines[current_index])).group()[5:]
                     print(name)
                     data_dump = []
                     person_families = []
@@ -42,27 +41,32 @@ class Builder:
                         if re.search("FAM", self.lines[current_index]):
                             family_id = int(re.search(r"\d", self.lines[current_index]).group())
                             print(type(family_id))
-                            family = family.Family(family_id)
-                            print(family)
-                            person_families.append(family)
-                            self.families[family_id] = family
-                            print(family)
+                            new_family = family.Family(family_id)
+                            print(new_family)
+                            person_families.append(new_family)
+                            self.families[family_id] = new_family
+                            print(new_family)
                         current_index += 1
-                    person = person.Person(person_id, name, file_dump, families)
-                    self.people.append(person)
+                    new_person = person.Person(person_id, name, data_dump, person_families)
+                    self.people.append(new_person)
                     current_index -= 1
                 current_index += 1
-        except:
-            print("this file is empty")
+        except Exception as e:
+            print(e)
 
     def print_people(self):
         for person in self.people:
+            print(person)
+
+    def print_families(self):
+        for family in self.families:
             print(person)
 
 def tests():
     obryans = Builder("Obryan.ged")
     # obryans.print_lines()
     obryans.print_people()
+    obryans.print_families()
 
 if __name__ == "__main__":
     tests()
