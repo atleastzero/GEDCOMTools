@@ -5,4 +5,4 @@ class Family:
         self.children = []
     
     def __str__(self):
-        return "this family has id", self.family_id
+        return "this family has id" + str(self.family_id)

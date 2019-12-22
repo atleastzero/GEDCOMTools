@@ -6,4 +6,4 @@ class Person:
         self.families = []
 
     def __str__(self):
-        return "Person with id", self.person_id, "is named", self.name
+        return "Person with id " + str(self.person_id) + " is named " + str(self.name)
